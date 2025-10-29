@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Recycle Bin Generator</title>
+  <link rel="icon" type="image/png" href="recycleIcon.png">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0f0f0f;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+      padding-top: 50px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    select {
+      background-color: #1a1a1a;
+      color: #fff;
+      border: 1px solid #444;
+      border-radius: 6px;
+      padding: 8px 12px;
+      margin: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      color: #ccc;
+      font-size: 0.95rem;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    button {
+      background-color: #ff0000;
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: background 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #cc0000;
+    }
+
+    #query {
+      margin-top: 25px;
+      font-size: 1.5rem;
+      background: #1a1a1a;
+      padding: 10px 20px;
+      border-radius: 6px;
+      user-select: all;
+      max-width: 90%;
+      word-wrap: break-word;
+    }
+
+    #copied {
+      margin-top: 10px;
+      font-size: 1rem;
+      color: #00ff9d;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    #searchBtn {
+      margin-top: 15px;
+      background-color: #202020;
+      border: 1px solid #ff0000;
+      color: #ff0000;
+      font-size: 1rem;
+      padding: 8px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease;
+      display: none;
+    }
+
+    #searchBtn:hover {
+      background-color: #ff0000;
+      color: #fff;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    footer a {
+      color: #00bfff;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .selector-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .selectors {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  </style>
+</head>
+
+<a href="https://buymeacoffee.com/qq9irqgbtj"
+   target="_blank" rel="noopener noreferrer"
+   style="
+     position: fixed;
+     bottom: 20px;
+     right: 20px;
+     background-color: #ff0000;
+     color: #fff;
+     padding: 10px 18px;
+     border-radius: 8px;
+     font-weight: 600;
+     text-decoration: none;
+     font-family: 'Inter', sans-serif;
+     box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+     transition: background 0.2s ease, transform 0.15s ease;
+     z-index: 1000;
+   "
+   onmouseover="this.style.backgroundColor='#cc0000'; this.style.transform='scale(1.05)';"
+   onmouseout="this.style.backgroundColor='#ff0000'; this.style.transform='scale(1)';">
+   Like the page? Buy me a pizza 🍕
+</a>
+
+
+<body>
+  <img src="youtubeDice.png" width="100"
+     height="100" alt="Die with Youtube logo on one side">
+  <h1>YouTube Recycle Bin Query Generator</h1>
+
+  <div class="selectors">
+    <div class="selector-group">
+      <label for="dateTemplate">📅 Date Templates:</label>
+      <select id="dateTemplate">
+        <option value="">-- choose one --</option>
+        <option value="WIN YYYYMMDD">WIN YYYYMMDD</option>
+        <option value="VID YYYYMMDD">VID YYYYMMDD</option>
+        <option value="Capture YYYYMMDD">Capture YYYYMMDD</option>
+        <option value="Desktop YYYY MM DD">Desktop YYYY MM DD</option>
+        <option value="WhatsApp Video YYYY">WhatsApp Video YYYY</option>
+        <option value="WhatsApp Video YYYY MM DD">WhatsApp Video YYYY MM DD</option>
+      </select>
+    </div>
+
+    <div class="selector-group">
+      <label for="numberTemplate">🔢 Number Templates:</label>
+      <select id="numberTemplate">
+        <option value="">-- choose one --</option>
+        <option value="DSC XXXX">DSC XXXX</option>
+        <option value="IMG XXXX">IMG XXXX</option>
+        <option value="MOV XXXX">MOV XXXX</option>
+        <option value="MVI XXXX">MVI XXXX</option>
+        <option value="SAM XXXX">SAM XXXX</option>
+        <option value="VTS XX X">VTS XX X</option>
+        <option value="VTS XXX 1">VTS XXX 1</option>
+      </select>
+    </div>
+
+    <div class="selector-group">
+      <label for="readyTemplate">🧱 Static Templates:</label>
+      <select id="readyTemplate">
+        <option value="">-- choose one --</option>
+        <option value="FullSizeRender">FullSizeRender</option>
+        <option value="My Edited Video">My Edited Video</option>
+        <option value="Untitled video">Untitled video</option>
+        <option value="RPReplay">RPReplay</option>
+        <option value="VLC Record">VLC Record</option>
+        <option value="Robloxapp">Robloxapp</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="button-group">
+    <button id="generateBtn">Generate Query</button>
+    <button id="randomBtn">🎲 Randomize All</button>
+  </div>
+
+  <div id="query">Click the button to get started</div>
+  <div id="copied">Copied to clipboard!</div>
+  <button id="searchBtn">Search on YouTube</button>
+
+  <footer>
+    <p>
+      Inspired by <strong>KVN AUST</strong>’s
+      <em>"YouTube’s Recycle Bin & The Internet’s Largest Video Graveyard"</em>.<br>
+      Read the full document
+      <a href="https://docs.google.com/document/d/1mV5PhumaIJ8mtH8XmohqXkk5fjK_HlqcineMccPQm5A/edit?tab=t.0" target="_blank" rel="noopener noreferrer">here</a>
+      and explore his YouTube channel
+      <a href="https://www.youtube.com/@KVNAUST" target="_blank" rel="noopener noreferrer">here</a>.
+    </p>
+  </footer>
+
+  <script>
+    const allTemplates = [
+      "YYYYMMDD", "WIN YYYYMMDD", "Capture YYYYMMDD", "VID YYYYMMDD", "InShot YYYYMMDD",
+      "WhatsApp Video YYYY", "WhatsApp Video YYYY MM DD", "YouCut YYYYMMDD", "Video YYYYMMDD",
+      "Desktop YYYY MM DD", "PXL YYYYMMDD",
+      "My Stupeflix Video XXXX", "My Movie X", "IMG XXXX", "MVI XXXX", "MOV XXXX", "100 XXXX",
+      "SAM XXXX", "DSC XXXX", "SDV XXXX", "DSCFXXXX", "DSCNXXXX", "PICTXXXX", "MAQ0XXXX",
+      "FILEXXXX", "GOPRXXXX", "GP01XXXX", "HNI 0XXX", "WA0XXX", "MOL0XX", "P100XXXX", "DJI XXXX",
+      "VTS XX X", "VTS XXX 1", "VTS 01 XXX", "Video0XX", "Vid0XX", "MOV000XX",
+      "Copy of Copy of", "My Edited Video", "FullSizeRender", "RPReplay", "/Storage/Emulated",
+      "DVR", "VLC Record", "Robloxapp", ".MP4", ".3gp", ".MOV", ".AVI", ".WMV", ".FLAC", ".WAV",
+      "lv 0", "bmdjAAAF", "Untitled video", "com oculus vrshell", "com oculus metacam", "Recording gvo"
+    ];
+
+    function randomDigits(count) {
+      return Array.from({ length: count }, () => Math.floor(Math.random() * 10)).join('');
+    }
+
+    function randomYear() {
+      return Math.floor(Math.random() * (2025 - 2006 + 1)) + 2006;
+    }
+
+    function randomMonth() {
+      return String(Math.floor(Math.random() * 12) + 1).padStart(2, '0');
+    }
+
+    function randomDay() {
+      return String(Math.floor(Math.random() * 28) + 1).padStart(2, '0');
+    }
+
+    function generateQuery(forceRandom = false) {
+      // Pick a selected template or random one
+      let selected = null;
+
+      if (!forceRandom) {
+        selected =
+          document.getElementById('dateTemplate').value ||
+          document.getElementById('numberTemplate').value ||
+          document.getElementById('readyTemplate').value;
+      }
+
+      let template = selected || allTemplates[Math.floor(Math.random() * allTemplates.length)];
+
+      // Handle YYYYMMDD and spaced YYYY MM DD
+      template = template.replace(/YYYY\s?MM\s?DD/g, match => {
+        const year = randomYear();
+        const month = randomMonth();
+        const day = randomDay();
+        return match.includes(' ') ? `${year} ${month} ${day}` : `${year}${month}${day}`;
+      });
+
+      // Handle WhatsApp Video YYYY MM DD
+      template = template.replace(/WhatsApp Video YYYY MM DD/g, () => {
+        return `WhatsApp Video ${randomYear()} ${randomMonth()} ${randomDay()}`;
+      });
+
+      // Handle single YYYY
+      template = template.replace(/\bYYYY\b/g, randomYear);
+
+      // Replace XXXX, XX, X
+      template = template.replace(/XXXX/g, randomDigits(4));
+      template = template.replace(/XX/g, randomDigits(2));
+      template = template.replace(/X/g, randomDigits(1));
+
+      const query = `"${template}"`;
+      document.getElementById('query').textContent = query;
+
+      // Copy to clipboard
+      navigator.clipboard.writeText(query).then(() => {
+        const copied = document.getElementById('copied');
+        copied.style.opacity = 1;
+        setTimeout(() => (copied.style.opacity = 0), 1500);
+      });
+
+      // Show search button
+      const searchBtn = document.getElementById('searchBtn');
+      searchBtn.style.display = 'inline-block';
+      searchBtn.dataset.query = template;
+    }
+
+    function searchYouTube() {
+      const template = document.getElementById('searchBtn').dataset.query;
+      const searchUrl = `https://www.youtube.com/results?search_query=%22${encodeURIComponent(template)}%22`;
+      window.open(searchUrl, '_blank');
+    }
+
+    // Ensure only one dropdown can be active at a time
+    function setupDropdownReset() {
+      const selects = [
+        document.getElementById('dateTemplate'),
+        document.getElementById('numberTemplate'),
+        document.getElementById('readyTemplate')
+      ];
+      selects.forEach(sel => {
+        sel.addEventListener('change', () => {
+          if (sel.value) {
+            selects.filter(s => s !== sel).forEach(s => (s.value = ""));
+          }
+        });
+      });
+    }
+
+    function randomizeAll() {
+      // Clear all dropdowns
+      document.getElementById('dateTemplate').value = "";
+      document.getElementById('numberTemplate').value = "";
+      document.getElementById('readyTemplate').value = "";
+      generateQuery(true);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      setupDropdownReset();
+      document.getElementById('generateBtn').addEventListener('click', () => generateQuery(false));
+      document.getElementById('randomBtn').addEventListener('click', randomizeAll);
+      document.getElementById('searchBtn').addEventListener('click', searchYouTube);
+    });
+  </script>
+</body>
+</html>

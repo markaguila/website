@@ -1,0 +1,57 @@
+const message = 'Hello world' // Try edit me
+
+function createDeck() {
+  const deck = ["x2", "+2", "+4", "+6", "+8", "+10"];
+  for (let i = 0; i < 3; i++) {
+    deck.push("Freeze");
+    deck.push("Flip 3");
+    deck.push("2nd Chance");
+  }
+  deck.push(0);
+  for (let cardValue = 1; cardValue <= 12; cardValue++) {
+    for (let i = 1; i <= cardValue; i++) {
+      deck.push(cardValue);
+    }
+  }
+  return deck;
+}
+
+function cardCount(card, deck) {
+  let count = 0;
+  for (let i = 0; i < deck.length; i++) {
+    if (deck[i] === card) {
+      count++;
+    }
+  }
+  return count;
+}
+
+function bustCount(hand, deck) {
+  let count = 0;
+  bustHand = hand.filter(item => typeof item === "number");
+  for (let i = 0; i < bustHand.length; i++) {
+      count += cardCount(bustHand[i], deck);
+  }
+  return count;
+}
+
+function bustChanceOne(hand, deck) {
+    bustCards = bustCount(hand, deck);
+    totalCards = deck.length;
+    return 100 * bustCards / totalCards;
+}
+
+function removeCardfromDeck(card, deck) {
+    deck.splice(deck.indexOf(card), 1);
+    return deck;
+}
+
+
+
+const h = [1, 2, 3];
+const d = [4, 4, 4, 4, 4, 1, 4, 4, 4, 4, 4];
+console.log(d);
+console.log(removeCardfromDeck(1, d));
+
+
+console.log(message)

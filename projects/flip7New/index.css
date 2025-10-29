@@ -1,0 +1,18 @@
+button {
+  font-size: 64px;
+  color: black;
+  font-weight: bold;
+  background-color: beige;
+
+    -webkit-text-stroke-width: 1.5px;
+    -webkit-text-stroke-color: black;
+}
+
+button:hover {
+  color: blue;
+  font-style: italic;
+}
+button:active {
+  color: purple;
+  font-weight: bold;
+}

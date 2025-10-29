@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
+    <title>Flip 7 Card Counter</title>
+</head>
+<body style="background-color: rgb(99, 180, 175);">
+    <div class="container">
+        <p style="font-family: Arial, Helvetica, sans-serif; font-size: 48px; font-weight:bolder; color: gold; height: 1vh;">Flip 7 Card Counter Test</p>
+    </div>
+    <div class="row" id="a" style="width: 100vw; height: 23vh; overflow: hidden; margin: 20px;">
+        <button type="button" style="width: 8%; height: 100%; background-image: url('zero.jpg'); background-size:100%;" onclick="addCardToHand(0)"></button>
+        <button type="button" style="width: 8%; height: 100%; background-image: url('one.jpg'); background-size:100%;" onclick="addCardToHand(1)"></button>
+        <button type="button" style="width: 8%; height: 100%; background-image: url('two.jpg'); background-size:100%;" onclick="addCardToHand(2)"></button>
+        <button type="button" style="width: 8%; height: 100%; background-image: url('three.jpg'); background-size:100%;" onclick="addCardToHand(3)"></button>
+        <button type="button" style="width: 8%; height: 100%; background-image: url('four.jpg'); background-size:100%;" onclick="addCardToHand(4)"></button>
+        <button type="button" style="width: 8%; height: 100%; background-image: url('five.jpg'); background-size:100%;" onclick="addCardToHand(5)"></button>
+        <button type="button" style="width: 8%; height: 100%; background-image: url('six.jpg'); background-size:100%;" onclick="addCardToHand(6)"></button>
+        <button type="button" style="width: 8%; height: 100%; background-image: url('seven.jpg'); background-size:100%;" onclick="addCardToHand(7)"></button>
+        <button type="button" style="width: 8%; height: 100%; background-image: url('eight.jpg'); background-size:100%;" onclick="addCardToHand(8)"></button>
+        <button type="button" style="width: 8%; height: 100%; background-image: url('nine.jpg'); background-size:100%;" onclick="addCardToHand(9)"></button>
+        <button type="button" style="width: 8%; height: 100%; background-image: url('ten.jpg'); background-size:100%;" onclick="addCardToHand(10)"></button>
+    </div>
+    <div class="row" id="b" style="width: 100vw; height: 23vh; overflow: hidden; margin: 20px">
+        <button type="button" style="width: 8%; height: 100%; background-image: url('eleven.jpg'); background-size:100%;" onclick="addCardToHand(11)"></button>
+        <button type="button" style="width: 8%; height: 100%; background-image: url('twelve.jpg'); background-size:100%;" onclick="addCardToHand(12)"></button>
+        <button type="button" style="width: 8%; height: 100%; background-image: url('plus2.jpg'); background-size:100%;" onclick="addCardToHand(&quot;+2&quot;)"></button>
+        <button type="button" style="width: 8%; height: 100%; background-image: url('plus4.jpg'); background-size:100%;" onclick="addCardToHand(&quot;+4&quot;)"></button>
+        <button type="button" style="width: 8%; height: 100%; background-image: url('plus6.jpg'); background-size:100%;" onclick="addCardToHand(&quot;+6&quot;)"></button>
+        <button type="button" style="width: 8%; height: 100%; background-image: url('plus8.jpg'); background-size:100%;" onclick="addCardToHand(&quot;+8&quot;)"></button>
+        <button type="button" style="width: 8%; height: 100%; background-image: url('plus10.jpg'); background-size:100%;" onclick="addCardToHand(&quot;+10&quot;)"></button>
+        <button type="button" style="width: 8%; height: 100%; background-image: url('times2.jpg'); background-size:100%;" onclick="addCardToHand(&quot;x2&quot;)"></button>
+        <button type="button" style="width: 8%; height: 100%; background-image: url('freeze.jpg'); background-size:100%;" onclick="addCardToHand(&quot;Freeze&quot;)"></button>
+        <button type="button" style="width: 8%; height: 100%; background-image: url('flipThree.jpg'); background-size:100%;" onclick="addCardToHand(&quot;Flip 3&quot;)"></button>
+        <button type="button" style="width: 8%; height: 100%; background-image: url('secondChance.jpg'); background-size:100%;" onclick="addCardToHand(&quot;2nd Chance&quot;)"></button>
+        </div>
+    <div class="row" id="c" style="width: 100%; height: 10vh; overflow: hidden; margin: 20px">
+        <button type="button" style="width: 10%; height: 100px; font-size: 24px" onclick="resetHands()">New Round</button>
+    </div>
+    <div class="row" id="d" style="width: 10%; height: 50px; overflow: hidden; margin: 20px; background-color: beige;">
+        <input type="checkbox" id="player" name="player" value="me">
+        <label for="player" style="font-size: 30px"> My turn </label><br>
+    </div>
+    <div style="background-color: beige;">
+        <p id="output" style="font-family: Arial, Helvetica, sans-serif; font-size: 26px; font-weight: bolder;">Hand:</p>
+        <p id="odds" style="font-family: Arial, Helvetica, sans-serif; font-size: 26px; font-weight: bolder;">Bust chance:</p>
+        <p id="deck" style="font-family: Arial, Helvetica, sans-serif; font-size: 26px; font-weight: bolder;">Not my hand:</p>
+        <p id="odds2" style="font-family: Arial, Helvetica, sans-serif; font-size: 26px; font-weight: bolder;">Bust chance:</p>
+        <p id="bust" style="font-family: Arial, Helvetica, sans-serif; font-size: 26px; font-weight: bolder;">Live Deck:</p>
+        <p id="history" style="font-family: Arial, Helvetica, sans-serif; font-size: 26px; font-weight: bolder;">History:</p>
+        <p id="logs" style="font-family: Arial, Helvetica, sans-serif; font-size: 26px; font-weight: bolder;">Message:</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
+    <title>Flip 7 Card Counter</title>
+</head>
+<body style="background-color: rgb(99, 180, 175);">
+    <div class="container">
+        <p style="font-family: Arial, Helvetica, sans-serif; font-size: 48px; font-weight:bolder; color: gold;">Flip 7 Card Counter Test</p>
+    </div>
+    <div class="row" id="a" style="width: 100%; height: 100px; overflow: hidden; margin: 20px;">
+        <button type="button" style="width: 10%; height: 100%; color: crimson;" onclick="addCardToHand(0)">0</button>
+        <button type="button" style="width: 10%; height: 100%; color: rgba(61, 61, 61, 0.294);" onclick="addCardToHand(1)">1</button>
+        <button type="button" style="width: 10%; height: 100%; color: yellowgreen;" onclick="addCardToHand(2)">2</button>
+        <button type="button" style="width: 10%; height: 100%; color: crimson;" onclick="addCardToHand(3)">3</button>
+        <button type="button" style="width: 10%; height: 100%; color: rgb(0, 174, 177);" onclick="addCardToHand(4)">4</button>
+        <button type="button" style="width: 10%; height: 100%; color: green;" onclick="addCardToHand(5)">5</button>
+        <button type="button" style="width: 10%; height: 100%; color: purple;" onclick="addCardToHand(6)">6</button>
+        <button type="button" style="width: 10%; height: 100%; color: salmon;" onclick="addCardToHand(7)">7</button>
+        <button type="button" style="width: 10%; height: 100%; color: rgb(88, 211, 88);" onclick="addCardToHand(8)">8</button>
+    </div>
+    <div class="row" id="b" style="width: 100%; height: 100px; overflow: hidden; margin: 20px">
+        <button type="button" style="width: 10%; height: 100%; color: orange;" onclick="addCardToHand(9)">9</button>
+        <button type="button" style="width: 10%; height: 100%; color:red" onclick="addCardToHand(10)">10</button>
+        <button type="button" style="width: 10%; height: 100%; color: rgb(74, 116, 208);" onclick="addCardToHand(11)">11</button>
+        <button type="button" style="width: 10%; height: 100%; color: rgb(103, 102, 102); " onclick="addCardToHand(12)">12</button>
+        <button type="button" style="width: 10%; height: 100%; background-color: orange; color: orangered;" onclick="addCardToHand(&quot;+2&quot;)">+2</button>
+        <button type="button" style="width: 10%; height: 100%; background-color: orange; color: orangered" onclick="addCardToHand(&quot;+4&quot;)">+4</button>
+        <button type="button" style="width: 10%; height: 100%; background-color: orange; color: orangered" onclick="addCardToHand(&quot;+6&quot;)">+6</button>
+        <button type="button" style="width: 10%; height: 100%; background-color: orange; color: orangered" onclick="addCardToHand(&quot;+8&quot;)">+8</button>
+        <button type="button" style="width: 10%; height: 100%; background-color: orange; color: orangered" onclick="addCardToHand(&quot;+10&quot;)">+10</button>
+    </div>
+    <div class="row" id="c" style="width: 100%; height: 80px; overflow: hidden; margin: 20px">
+        <button type="button" style="width: 10%; height: 100%; font-size: 36px; background-color: orange; color: orangered" onclick="addCardToHand(&quot;x2&quot;)">x2</button>
+        <button type="button" style="width: 20%; height: 100%; font-size: 36px; background-color:rgb(117, 202, 255); color: gray;" onclick="addCardToHand(&quot;Freeze&quot;)">Freeze</button>
+        <button type="button" style="width: 20%; height: 100%; font-size: 36px; background-color: yellow; color: gray;" onclick="addCardToHand(&quot;Flip 3&quot;)">Flip 3</button>
+        <button type="button" style="width: 20%; height: 100%; font-size: 36px; background-color: red; color: gray;" onclick="addCardToHand(&quot;2nd Chance&quot;)">Second Chance</button>
+        <button type="button" style="width: 21%; height: 100%; font-size: 36px" onclick="resetHands()">New Round</button>
+        
+    </div>
+    <div class="row" id="d" style="width: 10%; height: 50px; overflow: hidden; margin: 20px; background-color: beige;">
+        <input type="checkbox" id="player" name="player" value="me">
+        <label for="player" style="font-size: 30px"> My turn </label><br>
+    </div>
+    <div style="background-color: beige;">
+        <p id="output" style="font-size: 24px">Hand:</p>
+        <p id="odds" style="font-size: 24px">Bust chance:</p>
+        <p id="deck" style="font-size: 24px">Not my hand:</p>
+        <p id="odds2" style="font-size: 24px">Bust chance:</p>
+        <p id="bust" style="font-size: 24px">Live Deck:</p>
+        <p id="logs">Message:</p>
+    </div>
+</body>
+</html>
